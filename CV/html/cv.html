@@ -3,12 +3,15 @@
 <head>
     <title>Meitar Goldfinger CV</title>
     <link rel="stylesheet" href="..\css\cv.css">
+    <script src="../html/dateJS.js"></script>
+
 </head>
 <body>
     <div class="grid-container">
 
         <div class = "image" align="center">
-            <img src="..\Resources\IMG_1586.jpeg" alt= "Meitar Goldfinger" width="275px">
+            <img src="..\Resources\IMG_1586.jpeg" alt= "Meitar Goldfinger" width="275px" onload="updateDate()">
+            <p id="img" ></p>
         </div>
 
          <div class="Myname" align="center">
@@ -44,10 +47,10 @@
         </div>
 
         <div class="buttons" align="center">
-            <button type="submit" class="Button" onclick=""> My CV </button>
-            <button type="submit" class="Button" onclick=""> Recommendation </button>
-            <button type="submit" class="Button" onclick=""> Projects </button>
-            <button type="submit" class="Button" onclick=""> Contact Me </button>
+            <button type="submit" class="Button" onclick="location.href='../html/MyCV.html'"> My CV </button>
+            <button type="submit" class="Button" onclick="location.href='../html/Recommandations.html'"> Recommendations </button>
+            <button type="submit" class="Button" onclick="location.href='../html/Projects.html'"> Projects </button>
+            <button type="submit" class="Button" onclick="location.href='../html/ContactMe.html'"> Contact Me </button>
         </div>
 
     </div>

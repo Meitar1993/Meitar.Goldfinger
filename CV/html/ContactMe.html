@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>ContactMe</title>
+        <link rel="stylesheet" href="../CSS/ContactMe.css">
+        <script src="../html/ContacMe.js"></script>
+    </head>
+    <body>
+    <hr class="hr">
+        <div class="grid-container">
+            <div class="ContactMe" align="center">
+                <h1>  ContactMe </h1>
+            </div>
+        <form>
+            <div class="Name" align="center">
+                <label for="Name">First Name:</label>
+                <br>
+                <input name="Name" type="text" id="Name" required>
+                <br>
+            </div>
+            <div class="EmailAddress" align="center">
+                <label for="EmailAddress">Email address:</label>
+                <br>
+                <input name="EmailAddress" type="text" id="EmailAddress" required>
+                <br>
+            </div>
+            <div class="PhoneNumber" align="center">
+                <label for="PhoneNumber">Phone number:</label>
+                <br>
+                <input name="PhoneNumber" type="text" id="PhoneNumber" >
+                <br>
+            </div>
+            <div class="Message" align="center">
+                <label for="Message">Message:</label>
+                <br>
+                <textarea name="Message" type="text" cols="20" rows="10" id="Message"></textarea>
+                <br>
+            </div>
+            <div class="Buttons" align="center">
+                <button type="submit"  class="sendButton" onclick="Form(document.getElementById('EmailAddress').value,document.getElementById('Name').value,document.getElementById('PhoneNumber').value,document.getElementById('Message').value)">Send</button>
+                <button type="submit" class="Return" onclick="location.href='../html/cv.html'">Back</button>
+
+            </div>
+        </form>
+        </div>
+    </body>
+</html>
