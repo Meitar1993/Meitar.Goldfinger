@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>Meitar Goldfinger CV</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/cv.css') }}">
+    <script src="{{ url_for('static', filename= 'JS/dateJS.js')}}"></script>
+
+</head>
+<body>
+    <div class="grid-container">
+
+        <div class = "image" align="center">
+            <img src="{{ url_for('static', filename= 'Resources/IMG_1586.jpeg')}}" alt= "Meitar Goldfinger" width="275px" onload="updateDate()">
+            <p id="img" ></p>
+        </div>
+
+         <div class="Myname" align="center">
+            <h1>Meitar Goldfinger</h1>
+        </div>
+
+         <div class="aboutMe">
+            <h1>About Me</h1>
+             * I'm a Student in Industrial & Management Engineering specializing in Information Systems at Ben-Gurion University.
+            <br>
+            <br>
+            * High functioning ability in both dynamic and stressful environments and in multitasking
+            <br>
+            <br>
+            * High level work ethic, self-learning ability, responsibility, initiative, and creative thinking
+            <br>
+            <br>
+            * Can control a variety of tools and technologies
+            <br>
+            <br>
+            * Demonstrates strong data analysis skills and logical thinking
+         </div>
+
+        <div class="ContactDetails" align="center">
+            <h1>Contact Me</h1>
+            <hr>
+            <p>052-3173838</p>
+            <p>jmeitarg@gmail.com</p>
+            <hr>
+            <a href="https://www.linkedin.com/in/meitar-goldfinger/"><img src="{{ url_for('static', filename='Resources/linkedin.png' )}}" alt= "linkedin" width="40px"></a>
+            <a href="https://www.facebook.com/meitar.goldfinger"><img src="{{ url_for('static', filename= 'Resources/facebook.jpeg')}}" alt= "facebook" width="45px"></a>
+
+        </div>
+
+        <div class="buttons" align="center">
+            <button type="submit" class="Button" onclick="location.href='/My CV'"> My CV </button>
+            <button type="submit" class="Button" onclick="location.href='/Recommandations'"> Recommendations </button>
+            <button type="submit" class="Button" onclick="location.href='/My Projects'"> Projects </button>
+            <button type="submit" class="Button" onclick="location.href='Contact Me'"> Contact Me </button>
+        </div>
+
+    </div>
+</body>
+
+
+</html>
+

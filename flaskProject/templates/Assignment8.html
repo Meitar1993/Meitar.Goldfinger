@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment8</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cv.css') }}">
+</head>
+<body>
+    {% set pageName= 'Meitar CV' %}
+    {% include('Header.html') %}
+    <div id="if/else">
+        <p>
+            {% if name %}
+                <h1>Welcome {{ name.FirstName | upper}} {{ name.LastName | upper }}!</h1>
+            {% else %}
+                <h1>Welcome User, Who Are You?</h1>
+            {% endif %}
+        </p>
+    </div>
+
+    <h2>My hobbies are:</h2>
+    <ul>
+        {% for hobby in Hobbies %}
+            <li>{{hobby}}</li>
+        {% endfor %}
+    </ul>
+    {% block Block %}
+    {% endblock %}
+</body>
+</html>

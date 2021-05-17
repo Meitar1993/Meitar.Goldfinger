@@ -1,28 +1,48 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, render_template
 from random import getrandbits
 
 app = Flask(__name__)
 
 @app.route('/')
-def Welcome_Main():
-    return 'Welcome To the Main Page!'
+def Main():
+    return render_template("cv.html")
 
-@app.route('/about')
-def Welcome_About():
-    return 'Welcome To About Page!'
+@app.route('/My CV')
+def MyCV():
+    return render_template("MyCV.html")
 
-@app.route('/home')
-def Welcome_Home():
-    return redirect('/')
+@app.route('/Contact Me')
+def Contactme():
+    return render_template("ContactMe.html")
 
-@app.route('/customers')
+@app.route('/My Projects')
+def projects():
+    return render_template("Projects.html")
+
+@app.route('/Recommandations')
 def Welcome_Customer():
-    IsSign = bool(getrandbits(1))
-    print(IsSign)
-    if IsSign:
-        return redirect(url_for('Welcome_Home'))
+    return render_template("RecommandationsNew.html")
+
+@app.route('/Assignment8')
+def Assignment8():
+    isUser =bool(getrandbits(1))
+    if isUser:
+        name = {'FirstName': "Meitar", 'LastName': "Goldfinger"}
     else:
-        return 'You need to signup'
+        name = ''
+    return render_template("Assignment8.html", name=name, Hobbies=['Practice Yoga', 'Listen to music', 'Eat', 'Shopping'])
+
+
+@app.route('/Assignment8Block')
+def Assignment8B():
+    isUser =bool(getrandbits(1))
+    if isUser:
+        name = {'FirstName': "Meitar", 'LastName': "Goldfinger"}
+    else:
+        name = ''
+    return render_template("Block.html", name=name, Hobbies=['Practice Yoga', 'Listen to music', 'Eat', 'Shopping'])
+
 
 if __name__ == '__main__':
     app.run()
+

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Recommendations.css') }}">
+    <script src="../static/JS/Reccom.js"></script>
+</head>
+    <body>
+        <hr class="hr">
+        <div class="grid-container">
+            <div class="header" align="center">
+                <h3>My Recommendations</h3>
+            </div>
+            <div class="Recomm1" align="center">
+                <h3><b>Shaul Magnezi</b></h3>
+                <p id="about1">Was my manager when I worked at "Reshet 13"</p>
+                <p id="mail1" style="display: none; ">shaul@gmail.com </p>
+                <br>
+                <button type="submit" class="mailButton"  onclick="copyElementText('mail1')">Click to copy the email</button>
+                <button type="submit" class="ReccomDown"  onclick="location.href={{ url_for('static',filename='Resources/Shaul.pdf') }}">Click for the recommendation</button>
+            </div>
+
+            <div class="Recomm2" align="center">
+                <h3><b>Oranit Avitan</b></h3>
+                <p id="about2">Was my commander in the army when I was an education officer</p>
+                <p id="mail2" style="display: none; ">Oranit@gmail.com </p>
+                <br>
+                <button type="submit" class="mailButton"  onclick="copyElementText('mail2')">Click to copy the email</button>
+                <button type="submit" class="ReccomDown"  onclick="location.href={{ url_for('static',filename='Resources/oranit.pdf') }}">Click for the recommendation</button>
+            </div>
+            <div class="backbutton" align="center">
+                <button type="submit" class="Return" onclick="location.href='/'">Back to Home Page</button>
+            </div>
+        </div>
+
+
+    </body>
+
+</html>
