@@ -1,0 +1,3 @@
+{% if 'fullname' in session and session['fullname'] %}
+    <h2>Welcome {{ session['fullname'] }}! </h2>
+{% endif %}

@@ -2,7 +2,8 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../../:\Users\Meitar\PycharmProjects\Meitar.Goldfinger\flaskProject\.idea/dataSources/
+/../../../../../../:\Users\Meitar\PycharmProjects\Meitar.Goldfinger\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+*.idea/*

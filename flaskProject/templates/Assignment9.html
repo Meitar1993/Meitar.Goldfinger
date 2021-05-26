@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment9</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contactMe.css') }}">
+</head>
+<body>
+{% include('UserNameHader.html') %}
+    <div class="grid-container">
+
+    <h1>Search Form:</h1>
+    <form method="GET" action="/Assignment9">
+        <input name="usernamesrc" type="text" placeholder="Search For Username">
+        <div class="Buttons" align="center">
+            <input type="submit" class="sendButton">
+        </div>
+    </form>
+    {% if search %}
+        {% if usernamesrc==''%}
+            {% for key in users %}
+                <li><b> {{ key }} </b></li>
+            {% endfor %}
+        {% elif  usernamesrc in users %}
+            <h2> You find {{ usernamesrc }} user!</h2>
+        {% else %}
+            <h2>This user is not exist</h2>
+        {% endif %}
+    {% endif %}
+    <br>
+
+    <h1>Registration form:</h1>
+    {% if 'fullname' in session and session['fullname'] %}
+        <div class="Buttons" align="center">
+              <button type="submit"  class="sendButton" onclick="location.href='Logout'">Logout</button>
+        </div>
+    {% else %}
+         <form method="POST" action="/Assignment9">
+            <input name="username" type="text" placeholder="Enter Your Username">
+             <div class="Buttons" align="center">
+                <input type="submit" class="sendButton">
+             </div>
+         </form>
+    {% endif %}
+
+            <div class="Buttons" align="center">
+            <button type="submit" class="Return" onclick="location.href='/'">Back</button>
+        </div>
+    </div>
+</body>
+</html>
+
