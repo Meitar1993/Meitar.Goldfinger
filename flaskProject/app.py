@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, session, redirect
 from random import getrandbits
+import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = '123'
+from pages.Assignment10.Assignment10 import Assignment10
+app.register_blueprint(Assignment10)
 
 @app.route('/')
 def Main():
@@ -88,6 +91,8 @@ def Assignment9():
 def logout():
     session['fullname'] = ''
     return redirect('/Assignment9')
+
+
 
 if __name__ == '__main__':
     app.run()
