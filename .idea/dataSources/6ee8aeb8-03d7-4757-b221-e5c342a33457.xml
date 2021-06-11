@@ -4485,26 +4485,31 @@ SELECT|sys.sys_config
       <Position>6</Position>
       <DataType>varchar(64)|0s</DataType>
     </column>
-    <column id="1095" parent="362" name="FullName">
+    <column id="1095" parent="362" name="ID">
       <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1096" parent="362" name="FullName">
+      <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="1096" parent="362" name="UserName">
-      <Position>2</Position>
+    <column id="1097" parent="362" name="UserName">
+      <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <index id="1097" parent="362" name="users_FullName_uindex">
+    <index id="1098" parent="362" name="users_FullName_uindex">
       <ColNames>FullName</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="1098" parent="362" name="PRIMARY">
+    <key id="1099" parent="362" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>FullName</ColNames>
+      <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1099" parent="362" name="users_FullName_uindex">
+    <key id="1100" parent="362" name="users_FullName_uindex">
       <ColNames>FullName</ColNames>
       <UnderlyingIndexName>users_FullName_uindex</UnderlyingIndexName>
     </key>

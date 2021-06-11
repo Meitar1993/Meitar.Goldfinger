@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, jsonify
 from random import getrandbits
 import mysql.connector
 
@@ -86,6 +86,52 @@ def Assignment9():
                            users=users,
                            usernamesrc=usernamesrc,
                            search=search)
+
+@app.route("/assignment11/users")
+def assignment11_users():
+    query = "select * from users"
+    query_result = interact_db(query=query, query_type='fetch')
+    response = "There is no data"
+    if len(query_result) != 0:
+        response = query_result
+    response = jsonify(response)
+
+    return response
+
+# ----------- DATABASE CONNECTION ----------- #
+def interact_db(query, query_type: str):
+    return_value = False
+    connection = mysql.connector.connect(host='localhost',
+                                         user='root',
+                                         passwd='root123',
+                                         database='web_cv')
+    cursor = connection.cursor(named_tuple=True)
+    cursor.execute(query)
+
+    if query_type == 'commit':
+        connection.commit()
+        return_value = True
+
+    if query_type == 'fetch':
+        query_result = cursor.fetchall()
+        return_value = query_result
+
+    connection.close()
+    cursor.close()
+    return return_value
+
+
+@app.route("/assignment11/users/selected", defaults={'ID': 123})
+@app.route("/assignment11/users/selected/<int:ID>")
+def assignment11UsersSelect(ID):
+    query = "select * from users where ID='%s';" % ID
+    query_result = interact_db(query=query, query_type='fetch')
+    response = "This ID is not exist"
+    if len(query_result) != 0:
+        response = query_result
+    response = jsonify(response)
+
+    return response
 
 @app.route("/Logout")
 def logout():
