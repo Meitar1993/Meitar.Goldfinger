@@ -1,0 +1,269 @@
+---
+title: "FinalProject"
+author: "Meitar&Daniel"
+date: "8 5 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library("readxl")
+table <- read_excel(file.choose(), sheet = 21)
+
+```
+
+```{r data}
+circleError <- c(table$Circle_Error)
+circleAbsError <- c(table$CIRCLE_ERROR_ABS)
+circlePercError <- c(table$`%Error`)*100
+n <- nrow(table)
+```
+
+```{r Descriptive statistics}
+minCE <- round(min(circleError), digits = 3)
+minCPE <- round(min(circlePercError), digits = 3)
+maxCE <- round(max(circleError), digits = 3)
+maxCPE <- round(max(circlePercError), digits = 3)
+meanCE <- round(mean(circleError), digits = 3)
+meanCPE <- round(mean(circlePercError),digits = 3)
+medianCE <- round(median(circleError), digits = 3)
+medianCPE <- round(median(circlePercError), digits = 3)
+FirstQuartCE <- round(quantile(circleError, 0.25), digits = 3) # first quartile
+FirstQuartCPE <- round(quantile(circlePercError, 0.25), digits = 3) # first quartile
+ThirdQuartCE <- round(quantile(circleError, 0.75), digits = 3) # third quartile
+ThirdQuartCPE <- round(quantile(circlePercError, 0.75), digits = 3) # third quartile
+SDCE <- round(sd(circleError), digits = 3) # standard deviation
+SDCPE <- round(sd(circlePercError),digits = 3) # standard deviation
+
+summaryTable <- data.frame(Type=c('Circle Error', 'Circle % Error'),
+                 Min=c(minCE, minCPE),
+                 First.Qu=c(FirstQuartCE, FirstQuartCPE),
+                 Madian=c(medianCE, medianCPE),
+                 Mean=c(meanCE, meanCPE),
+                 Third.Qu=c(ThirdQuartCE, ThirdQuartCPE),
+                 Max=c(maxCE, maxCPE),
+                 SD=c(SDCE, SDCPE))
+
+head(summaryTable)
+```
+
+```{r hist}
+
+h <- hist(circleError,
+main="Error size",
+xlab="Error value",
+xlim=c(-150,250),
+breaks = 15,
+ylim=c(0,80),
+col="chocolate",
+border="brown",
+freq=TRUE
+)
+axis(1, at=seq(-150, 300, by=50), labels=FALSE)
+text(h$mids,h$counts,labels=h$counts, adj=c(0.5, -0.5))
+```
+
+```{r boxplot}
+boxplottt<-boxplot(circleError, main='error size boxplot')
+text(y=fivenum(circleError), labels =fivenum(circleError), x=1.25)
+text(1:3, meanCE + 0.08, labels = meanCE)
+points(meanCE,col="red",pch=18)
+```
+
+```{r cumulative distibution}
+cumudist <- ecdf(circleError)
+plot(cumudist, main = 'cumulative distibution', xlab = 'Error', ylab = 'precent')
+```
+
+
+```{r confidence interval}
+minus = round(meanCPE-1.96*(SDCPE/sqrt(n)), digits = 3)
+plus = round(meanCPE+1.96*(SDCPE/sqrt(n)), digits = 3)
+paste("{",minus,",",plus,"}")
+```
+
+```{r data Meitar}
+circleErrorMei <- circleError[1:61]
+circleAbsErrorMei <- circleAbsError[1:61]
+circlePercErrorMei <- circlePercError[1:61]
+nMei <- 61
+```
+
+```{r data Daniel}
+circleErrorDan <- circleError[62:146]
+circleAbsErrorDan <- circleAbsError[62:146]
+circlePercErrorDan <- circlePercError[62:146]
+nDan <- 85
+```
+
+```{r Descriptive statistics Meitar}
+minCEMei <- round(min(circleErrorMei), digits = 3)
+minCPEMei <- round(min(circlePercErrorMei), digits = 3)
+maxCEMei <- round(max(circleErrorMei), digits = 3)
+maxCPEMei <- round(max(circlePercErrorMei), digits = 3)
+meanCEMei <- round(mean(circleErrorMei), digits = 3)
+meanCPEMei <- round(mean(circlePercErrorMei),digits = 3)
+medianCEMei <- round(median(circleErrorMei), digits = 3)
+medianCPEMei <- round(median(circlePercErrorMei), digits = 3)
+FirstQuartCEMei <- round(quantile(circleErrorMei, 0.25), digits = 3) # first quartile
+FirstQuartCPEMei <- round(quantile(circlePercErrorMei, 0.25), digits = 3) # first quartile
+ThirdQuartCEMei <- round(quantile(circleErrorMei, 0.75), digits = 3) # third quartile
+ThirdQuartCPEMei <- round(quantile(circlePercErrorMei, 0.75), digits = 3) # third quartile
+SDCEMei <- round(sd(circleErrorMei), digits = 3) # standard deviation
+SDCPEMei <- round(sd(circlePercErrorMei),digits = 3) # standard deviation
+
+summaryTableMei <- data.frame(Type=c('Circle Error', 'Circle % Error'),
+                 Min=c(minCEMei, minCPEMei),
+                 First.Qu=c(FirstQuartCEMei, FirstQuartCPEMei),
+                 Madian=c(medianCEMei, medianCPEMei),
+                 Mean=c(meanCEMei, meanCPEMei),
+                 Third.Qu=c(ThirdQuartCEMei, ThirdQuartCPEMei),
+                 Max=c(maxCEMei, maxCPEMei),
+                 SD=c(SDCEMei, SDCPEMei))
+
+head(summaryTableMei)
+```
+
+
+```{r Descriptive statistics Daniel}
+minCEDan <- round(min(circleErrorDan), digits = 3)
+minCPEDan <- round(min(circlePercErrorDan), digits = 3)
+maxCEDan <- round(max(circleErrorDan), digits = 3)
+maxCPEDan <- round(max(circlePercErrorDan), digits = 3)
+meanCEDan <- round(mean(circleErrorDan), digits = 3)
+meanCPEDan <- round(mean(circlePercErrorDan),digits = 3)
+medianCEDan <- round(median(circleErrorDan), digits = 3)
+medianCPEDan <- round(median(circlePercErrorDan), digits = 3)
+FirstQuartCEDan <- round(quantile(circleErrorDan, 0.25), digits = 3) # first quartile
+FirstQuartCPEDan <- round(quantile(circlePercErrorDan, 0.25), digits = 3) # first quartile
+ThirdQuartCEDan <- round(quantile(circleErrorDan, 0.75), digits = 3) # third quartile
+ThirdQuartCPEDan <- round(quantile(circlePercErrorDan, 0.75), digits = 3) # third quartile
+SDCEDan <- round(sd(circleErrorDan), digits = 3) # standard deviation
+SDCPEDan <- round(sd(circlePercErrorDan),digits = 3) # standard deviation
+
+summaryTableDan <- data.frame(Type=c('Circle Error', 'Circle % Error'),
+                 Min=c(minCEDan, minCPEDan),
+                 First.Qu=c(FirstQuartCEDan, FirstQuartCPEDan),
+                 Madian=c(medianCEDan, medianCPEDan),
+                 Mean=c(meanCEDan, meanCPEDan),
+                 Third.Qu=c(ThirdQuartCEDan, ThirdQuartCPEDan),
+                 Max=c(maxCEDan, maxCPEDan),
+                 SD=c(SDCEDan, SDCPEDan))
+
+head(summaryTableDan)
+```
+```{r hist Meitar}
+
+hMei <- hist(circleErrorMei,
+main="Error size",
+xlab="Error value",
+xlim=c(-100,250),
+breaks = 20,
+ylim=c(0,35),
+col="chocolate",
+border="brown",
+freq=TRUE
+)
+axis(1, at=seq(-150, 300, by=50), labels=FALSE)
+text(hMei$mids,hMei$counts,labels=hMei$counts, adj=c(0.5, -0.5))
+```
+
+```{r hist Daniel}
+
+hDan <- hist(circleErrorDan,
+main="Error size",
+xlab="Error value",
+xlim=c(-150,150),
+breaks = 15,
+ylim=c(0,50),
+col="chocolate",
+border="brown",
+freq=TRUE
+)
+axis(1, at=seq(-150, 300, by=50), labels=FALSE)
+text(hDan$mids,hDan$counts,labels=hDan$counts, adj=c(0.5, -0.5))
+```
+
+```{r boxplot Meitar}
+boxplottt<-boxplot(circleErrorMei, main='error size boxplot')
+text(y=fivenum(circleErrorMei), labels =fivenum(circleErrorMei), x=1.25)
+text(1:3, meanCEMei + 0.08, labels = meanCEMei)
+points(meanCEMei,col="red",pch=18)
+```
+
+```{r boxplot Daniel}
+boxplottt<-boxplot(circleErrorDan, main='error size boxplot')
+text(y=fivenum(circleErrorDan), labels =fivenum(circleErrorDan), x=1.25)
+text(1:3, meanCEDan + 0.08, labels = meanCEDan)
+points(meanCEDan,col="red",pch=18)
+```
+
+```{r cumulative distibution Meitar}
+cumudist <- ecdf(circleErrorMei)
+plot(cumudist, main = 'cumulative distibution', xlab = 'Error', ylab = 'precent')
+```
+
+```{r cumulative distibution Daniel}
+cumudist <- ecdf(circleErrorDan)
+plot(cumudist, main = 'cumulative distibution', xlab = 'Error', ylab = 'precent')
+```
+
+```{r confidence interval Meitar}
+minusMei = round(meanCPEMei-1.96*(SDCPEMei/sqrt(nMei)), digits = 3)
+plusMei = round(meanCPEMei+1.96*(SDCPEMei/sqrt(nMei)), digits = 3)
+paste("{",minusMei,",",plusMei,"}")
+```
+
+```{r confidence interval Daniel}
+minusDan = round(meanCPEDan-1.96*(SDCPEDan/sqrt(nDan)), digits = 3)
+plusDan = round(meanCPEDan+1.96*(SDCPEDan/sqrt(nDan)), digits = 3)
+paste("{",minusDan,",",plusDan,"}")
+```
+
+```{r t-test}
+#x <- rnorm(circlePercErrorMei, mean = 20)
+#y <- rnorm(circlePercErrorDan, mean = 30)
+# var test in R
+var.test(circlePercErrorMei, circlePercErrorDan, alternative = "two.sided")
+#res.ftest <- var.test(weight ~ group, data = my_data)
+#res.ftest
+```
+
+```{r t-test}
+res <- t.test(circlePercErrorMei, circlePercErrorDan, var.equal = TRUE)
+res
+```
+
+```{r Size statistics}
+Size <- c(table$Size)
+minSize <- round(min(Size), digits = 3)
+maxSize <- round(max(Size), digits = 3)
+meanSize <- round(mean(Size), digits = 3)
+medianSize <- round(median(Size), digits = 3)
+FirstSize <- round(quantile(Size, 0.25), digits = 3) # first quartile
+ThirdQuartSize <- round(quantile(Size, 0.75), digits = 3) # third quartile
+SDSize <- round(sd(Size), digits = 3) # standard deviation
+```
+
+```{r hist Size}
+
+hSize <- hist(Size,
+main="Cluster size",
+xlab="Cluster Size value",
+xlim=c(0,160000),
+breaks = 15,
+ylim=c(0,50),
+col="chocolate",
+border="brown",
+freq=TRUE
+)
+axis(1, at=seq(0, 170000, by=10000), labels=FALSE)
+text(hSize$mids,hSize$counts,labels=hSize$counts, adj=c(0.5, -0.5))
+```
+```{r Scatter Plot Size}
+plot(x=Size, y=circlePercError, xlab = 'Cluster Size', ylab = 'Error Size')
+```
+
+```{r pearson}
+cor(Size, circlePercError, method = c("pearson"))
+cor.test(Size, circlePercError)
+```
